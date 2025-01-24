@@ -55,3 +55,15 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['login'] = 'auth/index';
 $route['register'] = 'auth/register';
+
+$route['dashboard'] = 'user/index';
+
+$route['kelas'] = 'course/index';
+
+$route['penilaian'] = 'assessment/index';
+
+$route['input_nilai'] = 'score/index';
+$route['input_nilai/select'] = 'score/find_course_component';
+
+$route['rekap'] = 'grade/index';
+$route['rekap/select'] = 'grade/select_course';

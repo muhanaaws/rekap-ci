@@ -12,6 +12,10 @@ class Auth extends CI_Controller
 
   public function index()
   {
+    if ($this->session->userdata('logged_in')) {
+      redirect('dashboard');
+    }
+
     $this->form_validation->set_rules('identity', 'Identity', 'required|trim');
     $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[6]');
 
@@ -32,8 +36,8 @@ class Auth extends CI_Controller
         $this->session->set_userdata('role', $user['role']);
         $this->session->set_userdata('name', $user['name']);
         $this->session->set_userdata('logged_in', true);
-        echo 'logged in';
-        // redirect('dashboard');
+
+        redirect('dashboard');
       } else {
         $this->session->set_flashdata('error', 'Invalid username or password');
         redirect('auth');
@@ -43,6 +47,10 @@ class Auth extends CI_Controller
 
   public function register()
   {
+    if ($this->session->userdata('logged_in')) {
+      redirect('dashboard');
+    }
+
     $this->form_validation->set_rules('identity', 'Identity', 'required|trim');
     $this->form_validation->set_rules('name', 'Name', 'required|trim');
     $this->form_validation->set_rules('role', 'Role', 'required|trim');
